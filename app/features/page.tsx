@@ -208,17 +208,24 @@ export default function FeaturesPage() {
     };
     window.addEventListener("resize", handleResize, { passive: true });
 
+    let rafId: number | null = null;
     const handlePointerMove = (e: PointerEvent) => {
+      if (rafId !== null) return;
       const mouseX = e.clientX - sceneRect.left;
       const mouseY = e.clientY - sceneRect.top;
-
-      // GPU accelerated cursor glow transform (0 layout reflow)
-      if (glow) {
-        glow.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
-      }
+      rafId = requestAnimationFrame(() => {
+        if (glow) {
+          glow.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        }
+        rafId = null;
+      });
     };
 
     const handlePointerLeave = () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
       if (glow) {
         glow.style.transform = `translate3d(${sceneRect.width * 0.5}px, ${sceneRect.height * 0.5}px, 0) translate(-50%, -50%)`;
       }
@@ -228,6 +235,7 @@ export default function FeaturesPage() {
     scene.addEventListener("pointerleave", handlePointerLeave, { passive: true });
 
     return () => {
+      if (rafId !== null) cancelAnimationFrame(rafId);
       window.removeEventListener("resize", handleResize);
       scene.removeEventListener("pointermove", handlePointerMove);
       scene.removeEventListener("pointerleave", handlePointerLeave);

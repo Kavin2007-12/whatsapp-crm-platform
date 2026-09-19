@@ -127,9 +127,9 @@ export default function Commerce3D({ progress = 0 }: { progress?: number }) {
   return (
     <div className="commerce3d" aria-hidden="true">
       <Canvas
-        dpr={[1, 1.8]}
+        dpr={[1, 1.25]}
         camera={{ position: [0, 0, 8], fov: 34 }}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        gl={{ antialias: false, alpha: true, powerPreference: "high-performance", preserveDrawingBuffer: false }}
       >
         <ambientLight intensity={0.8} />
         <directionalLight position={[3, 4, 6]} intensity={1.2} color="#ffffff" />

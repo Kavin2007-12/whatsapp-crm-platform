@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { 
   Menu, 
   X, 
@@ -14,12 +14,13 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 8);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -72,6 +73,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   prefetch={true}
+                  onPointerDown={() => router.push(link.href)}
                   className={`text-[12.5px] font-medium px-3.5 py-1 rounded-full transition-all ${
                     isActive
                       ? "bg-white text-slate-900 font-semibold shadow-xs border border-slate-200/80"

@@ -28,7 +28,7 @@ body {
 /* Floating Back Pill */
 .cs-back-pill {
   position: fixed;
-  top: 20px;
+  bottom: 24px;
   left: 24px;
   z-index: 100;
   display: inline-flex;
@@ -38,13 +38,14 @@ body {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(214, 232, 224, 0.95);
   color: #1a433e;
   font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 4px 18px rgba(18, 55, 62, 0.1);
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(18, 55, 62, 0.12);
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .cs-back-pill:hover {

@@ -32,23 +32,24 @@
 /* Floating back-to-features pill navigation */
 .whatsapp-crm-page .nav-back-pill {
   position: fixed;
-  top: 18px;
+  bottom: 24px;
   left: 24px;
   z-index: 100;
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(214, 232, 224, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(214, 232, 224, 0.95);
   color: #1a433e;
-  font-size: 12px;
-  font-weight: 600;
-  box-shadow: 0 4px 16px rgba(18, 55, 62, 0.08);
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 18px rgba(18, 55, 62, 0.12);
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .whatsapp-crm-page .nav-back-pill:hover {
