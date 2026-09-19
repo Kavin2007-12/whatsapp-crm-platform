@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import "./customer-support.css";
 
@@ -28,12 +29,27 @@ const ARCH_BRANDS = [
 ];
 
 export default function CustomerSupportPage() {
+  const router = useRouter();
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      router.prefetch("/features");
+      router.prefetch("/features/integration");
+      router.prefetch("/features/ai-customer-inbox");
+    } catch {}
+  }, [router]);
 
   return (
     <main className="cs-page" aria-label="GRADIX Customer Support">
       {/* Floating Back Navigation Pill to Features Hub */}
-      <Link href="/features" className="cs-back-pill" title="Return to features hub">
+      <Link 
+        href="/features" 
+        prefetch={true} 
+        onPointerDown={() => router.push("/features")}
+        className="cs-back-pill" 
+        title="Return to features hub"
+      >
         <ArrowLeft size={14} />
         <span>Features</span>
       </Link>
@@ -50,6 +66,7 @@ export default function CustomerSupportPage() {
             alt="GRADIX customer support visual"
             draggable="false"
             decoding="async"
+            fetchPriority="high"
           />
         </picture>
 
@@ -68,6 +85,7 @@ export default function CustomerSupportPage() {
               }}
               onMouseEnter={() => setActiveTooltip(node.id)}
               onMouseLeave={() => setActiveTooltip(null)}
+              onPointerDown={() => setActiveTooltip(activeTooltip === node.id ? null : node.id)}
               onClick={() => setActiveTooltip(activeTooltip === node.id ? null : node.id)}
               aria-label={node.name}
               title={node.name}
@@ -79,6 +97,8 @@ export default function CustomerSupportPage() {
             <Link
               key={brand.id}
               href="/features/integration"
+              prefetch={true}
+              onPointerDown={() => router.push("/features/integration")}
               className="cs-brand-hotspot"
               style={{
                 left: brand.left,

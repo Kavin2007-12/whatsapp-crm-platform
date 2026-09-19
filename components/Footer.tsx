@@ -15,7 +15,12 @@ export default function Footer() {
     pathname?.startsWith("/features/customer-support") ||
     pathname?.startsWith("/features/support") ||
     pathname?.startsWith("/features/whatsapp-commerce") ||
-    pathname?.startsWith("/features/commerce")
+    pathname?.startsWith("/features/commerce") ||
+    pathname?.startsWith("/features/ai-customer-inbox") ||
+    pathname?.startsWith("/features/inbox") ||
+    pathname?.startsWith("/features/whatsapp-api") ||
+    pathname?.startsWith("/features/api") ||
+    pathname?.startsWith("/whatsapp-api")
   ) {
     return null;
   }

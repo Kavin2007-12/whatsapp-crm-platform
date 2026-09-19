@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowRight, X, Sparkles, CheckCircle2 } from "lucide-react";
 
 interface FeatureCardHotspot {
@@ -14,6 +15,7 @@ interface FeatureCardHotspot {
   tag: string;
   description: string;
   benefits: string[];
+  route?: string;
 }
 
 const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
@@ -25,6 +27,7 @@ const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
     left: "49.41%",
     top: "32.23%",
     tag: "Native Connectivity",
+    route: "/features/integration",
     description: "Seamlessly integrate your WhatsApp CRM with Shopify, WooCommerce, Zapier, HubSpot, Zoho, and enterprise REST APIs.",
     benefits: [
       "1-Click storefront & eCommerce catalog sync",
@@ -41,6 +44,7 @@ const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
     left: "23.83%",
     top: "44.34%",
     tag: "AI Conversation Engine",
+    route: "/features/whatsapp-chatbot",
     description: "Build visual multi-step conversational flows, trigger automated replies, and handle customer questions 24/7 with zero code.",
     benefits: [
       "Visual drag-and-drop conversational canvas",
@@ -57,6 +61,7 @@ const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
     left: "19.63%",
     top: "61.72%",
     tag: "Unified Team Workspace",
+    route: "/features/ai-customer-inbox",
     description: "Empower your entire team with a high-speed shared team inbox, collision detection, and automated conversational assignment.",
     benefits: [
       "Multi-agent team inbox with real-time collision alerts",
@@ -73,6 +78,7 @@ const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
     left: "28.52%",
     top: "84.18%",
     tag: "In-Chat Storefront",
+    route: "/features/whatsapp-commerce",
     description: "Enable customers to browse native WhatsApp product catalogs, assemble carts, and complete 1-tap UPI payments right inside chats.",
     benefits: [
       "Interactive multi-item catalog showcase",
@@ -89,6 +95,7 @@ const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
     left: "75.98%",
     top: "44.34%",
     tag: "Official Meta Cloud API",
+    route: "/features/whatsapp-api",
     description: "Enterprise tier-4 Cloud API infrastructure delivering high-throughput broadcast campaigns with 99.99% deliverability.",
     benefits: [
       "Direct official Meta WhatsApp Cloud API tier-4 pipeline",
@@ -105,6 +112,7 @@ const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
     left: "80.47%",
     top: "61.91%",
     tag: "Customer Lifecycle",
+    route: "/features/whatsapp-crm",
     description: "Track every lead, customer journey stage, and deal progression in an integrated visual pipeline designed for WhatsApp commerce.",
     benefits: [
       "Visual Kanban pipeline stages for sales and support",
@@ -121,6 +129,7 @@ const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
     left: "72.07%",
     top: "84.18%",
     tag: "24/7 Enterprise Helpdesk",
+    route: "/features/customer-support",
     description: "Deliver rapid, consistent customer support with intelligent routing, SLA alerts, and post-chat customer satisfaction (CSAT) scoring.",
     benefits: [
       "Automated round-robin and skill-based ticket routing",
@@ -131,11 +140,47 @@ const FEATURE_HOTSPOTS: FeatureCardHotspot[] = [
   },
 ];
 
+const PREFETCH_ROUTES = [
+  "/features/whatsapp-api",
+  "/features/ai-customer-inbox",
+  "/features/customer-support",
+  "/features/whatsapp-commerce",
+  "/features/whatsapp-chatbot",
+  "/features/whatsapp-crm",
+  "/features/integration",
+  "/features/inbox",
+  "/features/api",
+  "/whatsapp-api",
+  "/contact"
+];
+
+const PRELOAD_IMAGES = [
+  "/assets/ai-customer-inbox/reference.webp",
+  "/customer-support-reference.webp",
+  "/assets/commerce/reference.webp",
+  "/assets/integrations/reference.webp"
+];
+
 export default function FeaturesPage() {
+  const router = useRouter();
   const sceneRef = useRef<HTMLElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const [activeModal, setActiveModal] = useState<FeatureCardHotspot | null>(null);
+
+  // Instant 0ms background prefetch and image preload on mount
+  useEffect(() => {
+    PREFETCH_ROUTES.forEach((route) => {
+      try {
+        router.prefetch(route);
+      } catch {}
+    });
+
+    PRELOAD_IMAGES.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, [router]);
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -187,6 +232,12 @@ export default function FeaturesPage() {
       scene.removeEventListener("pointerleave", handlePointerLeave);
     };
   }, []);
+
+  const handlePillPointerDown = (route?: string) => {
+    if (route) {
+      router.push(route);
+    }
+  };
 
   return (
     <div className="w-full h-[calc(100vh-58px)] min-h-[540px] bg-[#020b18] overflow-hidden selection:bg-blue-600 selection:text-white">
@@ -248,11 +299,13 @@ export default function FeaturesPage() {
             </>
           );
 
-          if (hotspot.id === "chatbot") {
+          if (hotspot.route) {
             return (
               <Link
                 key={hotspot.id}
-                href="/features/whatsapp-chatbot"
+                href={hotspot.route}
+                prefetch={true}
+                onPointerDown={() => handlePillPointerDown(hotspot.route)}
                 className="feature-pill-card group focus:outline-hidden"
                 style={{
                   left: hotspot.left,
@@ -264,75 +317,6 @@ export default function FeaturesPage() {
               </Link>
             );
           }
-
-          if (hotspot.id === "crm") {
-            return (
-              <Link
-                key={hotspot.id}
-                href="/features/whatsapp-crm"
-                className="feature-pill-card group focus:outline-hidden"
-                style={{
-                  left: hotspot.left,
-                  top: hotspot.top,
-                }}
-                aria-label={`Explore ${hotspot.title}`}
-              >
-                {cardContent}
-              </Link>
-            );
-          }
-
-          if (hotspot.id === "integration") {
-            return (
-              <Link
-                key={hotspot.id}
-                href="/features/integration"
-                className="feature-pill-card group focus:outline-hidden"
-                style={{
-                  left: hotspot.left,
-                  top: hotspot.top,
-                }}
-                aria-label={`Explore ${hotspot.title}`}
-              >
-                {cardContent}
-              </Link>
-            );
-          }
-
-          if (hotspot.id === "support") {
-            return (
-              <Link
-                key={hotspot.id}
-                href="/features/customer-support"
-                className="feature-pill-card group focus:outline-hidden"
-                style={{
-                  left: hotspot.left,
-                  top: hotspot.top,
-                }}
-                aria-label={`Explore ${hotspot.title}`}
-              >
-                {cardContent}
-              </Link>
-            );
-          }
-
-          if (hotspot.id === "commerce") {
-            return (
-              <Link
-                key={hotspot.id}
-                href="/features/whatsapp-commerce"
-                className="feature-pill-card group focus:outline-hidden"
-                style={{
-                  left: hotspot.left,
-                  top: hotspot.top,
-                }}
-                aria-label={`Explore ${hotspot.title}`}
-              >
-                {cardContent}
-              </Link>
-            );
-          }
-
 
           return (
             <button
@@ -421,6 +405,7 @@ export default function FeaturesPage() {
             <div className="flex items-center gap-3">
               <Link
                 href="/contact"
+                prefetch={true}
                 className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-600/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>Get Started with {activeModal.title}</span>
@@ -439,5 +424,3 @@ export default function FeaturesPage() {
     </div>
   );
 }
-
-
