@@ -278,6 +278,37 @@ function MotionOverlay() {
   return <div ref={ref} className="motion-overlay" aria-hidden="true" />;
 }
 
+// Reusable Laser Conduit Gap Divider with Pulse Animation
+function LaserGapDivider({ label }: { label?: string }) {
+  return (
+    <div className="section-laser-gap" aria-hidden="true">
+      {/* Top Node */}
+      <div className="gap-node top-node">
+        <div className="node-core" />
+      </div>
+
+      {/* Vertical Glowing Laser Conduit */}
+      <div className="laser-conduit">
+        <div className="conduit-ambient-glow" />
+        <div className="conduit-line" />
+        <div className="conduit-pulse pulse-fast" />
+        <div className="conduit-pulse pulse-slow" />
+      </div>
+
+      {/* Floating Ambient Glass Orb */}
+      <div className="gap-floating-orb" />
+
+      {/* Optional Central Stream Badge */}
+      {label && <span className="gap-laser-label">{label}</span>}
+
+      {/* Bottom Node */}
+      <div className="gap-node bottom-node">
+        <div className="node-core" />
+      </div>
+    </div>
+  );
+}
+
 export default function IntegrationsPage() {
   const router = useRouter();
   const [activeAppId, setActiveAppId] = useState<string>("shopify");
@@ -309,179 +340,250 @@ export default function IntegrationsPage() {
         <span>Features</span>
       </Link>
 
-      <div className="visual-stage">
-        {/* Base Visual Artwork */}
-        <picture>
-          <source srcSet={assetPath("/assets/integrations/reference.webp")} type="image/webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="reference-visual"
-            src={assetPath("/assets/integrations/reference.png")}
-            alt="GRADIX integrations visual"
-            draggable="false"
-            decoding="async"
-            fetchPriority="high"
-          />
-        </picture>
-        <MotionOverlay />
-
-        {/* ========================================================================= */}
-        {/* CODED TYPOGRAPHY & INTERACTIVE LAYERS (CRISP VECTOR RENDERING)             */}
-        {/* ========================================================================= */}
+      <div className="integration-sections-container">
         
-        {/* Section 1 Header */}
-        <div className="coded-layer sec1-typography" aria-hidden="true">
-          <div className="section-badge">
-            <span className="badge-text">INTEGRATIONS</span>
-            <span className="badge-accent-bar" />
-          </div>
-          <h1 className="sec1-title">
-            Connect everything.<br />
-            <span className="text-emerald-flow">Keep every</span><br />
-            <span className="text-emerald-flow">conversation moving.</span>
-          </h1>
-        </div>
+        {/* ========================================================================= */}
+        {/* SECTION 1: HERO ORBITAL ECOSYSTEM                                         */}
+        {/* ========================================================================= */}
+        <section className="section-card card-hero" aria-label="Integrations Ecosystem">
+          <div className="card-inner-stage stage-hero">
+            <picture>
+              <source srcSet={assetPath("/assets/integrations/reference.webp")} type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="reference-visual"
+                src={assetPath("/assets/integrations/reference.png")}
+                alt="GRADIX integrations visual"
+                draggable="false"
+                decoding="async"
+                fetchPriority="high"
+              />
+            </picture>
+            <MotionOverlay />
 
-        {/* Section 2 Badge */}
-        <div className="coded-layer sec2-typography" aria-hidden="true">
-          <div className="section-badge">
-            <span className="badge-text">REAL-TIME SYNC</span>
-            <span className="badge-accent-bar" />
+            {/* Section 1 Header Typography */}
+            <div className="coded-layer sec1-typography" aria-hidden="true">
+              <div className="section-badge">
+                <span className="badge-text">INTEGRATIONS</span>
+                <span className="badge-accent-bar" />
+              </div>
+              <h1 className="sec1-title">
+                Connect everything.<br />
+                <span className="text-emerald-flow">Keep every</span><br />
+                <span className="text-emerald-flow">conversation moving.</span>
+              </h1>
+            </div>
           </div>
-        </div>
+        </section>
 
-        {/* Section 3 Badge */}
-        <div className="coded-layer sec3-typography" aria-hidden="true">
-          <div className="section-badge">
-            <span className="badge-text">INTEGRATION EXPLORER</span>
-            <span className="badge-accent-bar" />
-          </div>
-        </div>
-
-        {/* Section 4 CTA */}
-        <div className="coded-layer sec4-typography" aria-hidden="true">
-          <h2 className="sec4-title">
-            Bring your stack into<br />
-            <span className="text-emerald-flow">the conversation.</span>
-          </h2>
-          <Link 
-            href="/contact" 
-            prefetch={true} 
-            className="coded-get-started-btn" 
-            title="Get Started with GRADIX"
-          >
-            <span>Get Started</span>
-            <ArrowRight size={17} strokeWidth={2.4} />
-          </Link>
-        </div>
+        {/* GAP 1: DATA LASER STREAM */}
+        <LaserGapDivider label="LIVE DATA SYNC STREAM" />
 
         {/* ========================================================================= */}
-        {/* INTERACTIVE SECTION 3 OVERLAY: OPTION LIST + CENTER TILE + RIGHT CARD     */}
+        {/* SECTION 2: REAL-TIME SYNC PIPELINE                                        */}
         {/* ========================================================================= */}
-        <div className="interactive-explorer-stage" aria-label="Interactive Integration Explorer">
-          {/* Dynamic Laser Connection SVG Ribbon */}
-          <svg className="explorer-laser-svg" viewBox="0 0 1024 1536" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="laserWireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#10b981" stopOpacity="0.9" />
-                <stop offset="50%" stopColor="#34d399" stopOpacity="1" />
-                <stop offset="100%" stopColor="#10b981" stopOpacity="0.9" />
-              </linearGradient>
-              <filter id="laserLineGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="3" />
-              </filter>
-            </defs>
+        <section className="section-card card-sync" aria-label="Real-Time Synchronization Pipeline">
+          <div className="card-inner-stage stage-sync">
+            <picture>
+              <source srcSet={assetPath("/assets/integrations/reference.webp")} type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="reference-visual"
+                src={assetPath("/assets/integrations/reference.png")}
+                alt="GRADIX real-time sync flow"
+                draggable="false"
+                decoding="async"
+              />
+            </picture>
+            <MotionOverlay />
 
-            {/* Path from Active Left Pill to Center Tile */}
-            <path
-              d={`M 220,${leftDotY} C 320,${leftDotY} 360,980 440,980`}
-              stroke="url(#laserWireGrad)"
-              strokeWidth="4"
-              fill="none"
-              strokeLinecap="round"
-              filter="url(#laserLineGlow)"
-              opacity="0.6"
-            />
-            <path
-              d={`M 220,${leftDotY} C 320,${leftDotY} 360,980 440,980`}
-              stroke="#ffffff"
-              strokeWidth="1.8"
-              fill="none"
-              strokeLinecap="round"
-              opacity="0.95"
-            />
-
-            {/* Path from Center Tile to Right Card */}
-            <path
-              d="M 565,980 C 645,980 700,894 772.5,894"
-              stroke="url(#laserWireGrad)"
-              strokeWidth="4"
-              fill="none"
-              strokeLinecap="round"
-              filter="url(#laserLineGlow)"
-              opacity="0.6"
-            />
-            <path
-              d="M 565,980 C 645,980 700,894 772.5,894"
-              stroke="#ffffff"
-              strokeWidth="1.8"
-              fill="none"
-              strokeLinecap="round"
-              opacity="0.95"
-            />
-          </svg>
-
-          {/* 1. LEFT OPTIONS INTERACTIVE BUTTONS */}
-          <div className="explorer-left-list">
-            {INTEGRATION_APPS.map((app) => {
-              const isActive = activeAppId === app.id;
-              return (
-                <button
-                  key={app.id}
-                  data-app-id={app.id}
-                  type="button"
-                  className={`explorer-option-pill ${isActive ? "active" : ""}`}
-                  onPointerDown={() => setActiveAppId(app.id)}
-                  onClick={() => setActiveAppId(app.id)}
-                  title={`Select ${app.name} integration`}
-                >
-                  <div className="option-icon-wrap">{app.icon}</div>
-                  <span className="option-label">{app.name}</span>
-                  {isActive && <span className="option-active-dot" />}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* 2. DYNAMIC CENTER 3D TILE */}
-          <div className="explorer-center-anchor" title={`${activeApp.name} Active Core`}>
-            <div key={activeApp.id} className="center-tile-box">
-              <div className="center-tile-surface">
-                {activeApp.centerIcon}
-                <div className="center-tile-specular" />
+            {/* Section 2 Badge */}
+            <div className="coded-layer sec2-typography" aria-hidden="true">
+              <div className="section-badge">
+                <span className="badge-text">REAL-TIME SYNC</span>
+                <span className="badge-accent-bar" />
               </div>
             </div>
           </div>
+        </section>
 
-          {/* 3. DYNAMIC RIGHT PREVIEW CARD */}
-          <Link
-            href="/contact"
-            prefetch={true}
-            className="explorer-right-anchor"
-            title={`Get started with ${activeApp.name}`}
-          >
-            <div key={activeApp.id} className="right-card-content">
-              <div className="right-icon-box">{activeApp.icon}</div>
-              <div className="right-text-col">
-                <span className="right-app-name">{activeApp.name}</span>
-                <span className="right-app-sub">{activeApp.subtitle}</span>
-              </div>
-              <div className="right-arrow-box">
-                <ArrowRight size={18} strokeWidth={2.4} color="#0f766e" />
+        {/* GAP 2: DATA LASER STREAM */}
+        <LaserGapDivider label="INTERACTIVE STACK CONNECTOR" />
+
+        {/* ========================================================================= */}
+        {/* SECTION 3: INTERACTIVE INTEGRATION EXPLORER                               */}
+        {/* ========================================================================= */}
+        <section className="section-card card-explorer" aria-label="Integration Explorer">
+          <div className="card-inner-stage stage-explorer">
+            <picture>
+              <source srcSet={assetPath("/assets/integrations/reference.webp")} type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="reference-visual"
+                src={assetPath("/assets/integrations/reference.png")}
+                alt="GRADIX integration explorer"
+                draggable="false"
+                decoding="async"
+              />
+            </picture>
+            <MotionOverlay />
+
+            {/* Section 3 Badge */}
+            <div className="coded-layer sec3-typography" aria-hidden="true">
+              <div className="section-badge">
+                <span className="badge-text">INTEGRATION EXPLORER</span>
+                <span className="badge-accent-bar" />
               </div>
             </div>
-          </Link>
-        </div>
+
+            {/* Interactive Section 3 Controls */}
+            <div className="interactive-explorer-stage" aria-label="Interactive Integration Explorer">
+              {/* Dynamic Laser Connection SVG Ribbon */}
+              <svg className="explorer-laser-svg" viewBox="0 0 1024 1536" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="laserWireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#10b981" stopOpacity="0.9" />
+                    <stop offset="50%" stopColor="#34d399" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#10b981" stopOpacity="0.9" />
+                  </linearGradient>
+                  <filter id="laserLineGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" />
+                  </filter>
+                </defs>
+
+                {/* Path from Active Left Pill to Center Tile */}
+                <path
+                  d={`M 220,${leftDotY} C 320,${leftDotY} 360,980 440,980`}
+                  stroke="url(#laserWireGrad)"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                  filter="url(#laserLineGlow)"
+                  opacity="0.6"
+                />
+                <path
+                  d={`M 220,${leftDotY} C 320,${leftDotY} 360,980 440,980`}
+                  stroke="#ffffff"
+                  strokeWidth="1.8"
+                  fill="none"
+                  strokeLinecap="round"
+                  opacity="0.95"
+                />
+
+                {/* Path from Center Tile to Right Card */}
+                <path
+                  d="M 565,980 C 645,980 700,894 772.5,894"
+                  stroke="url(#laserWireGrad)"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeLinecap="round"
+                  filter="url(#laserLineGlow)"
+                  opacity="0.6"
+                />
+                <path
+                  d="M 565,980 C 645,980 700,894 772.5,894"
+                  stroke="#ffffff"
+                  strokeWidth="1.8"
+                  fill="none"
+                  strokeLinecap="round"
+                  opacity="0.95"
+                />
+              </svg>
+
+              {/* 1. LEFT OPTIONS INTERACTIVE BUTTONS */}
+              <div className="explorer-left-list">
+                {INTEGRATION_APPS.map((app) => {
+                  const isActive = activeAppId === app.id;
+                  return (
+                    <button
+                      key={app.id}
+                      data-app-id={app.id}
+                      type="button"
+                      className={`explorer-option-pill ${isActive ? "active" : ""}`}
+                      onPointerDown={() => setActiveAppId(app.id)}
+                      onClick={() => setActiveAppId(app.id)}
+                      title={`Select ${app.name} integration`}
+                    >
+                      <div className="option-icon-wrap">{app.icon}</div>
+                      <span className="option-label">{app.name}</span>
+                      {isActive && <span className="option-active-dot" />}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* 2. DYNAMIC CENTER 3D TILE */}
+              <div className="explorer-center-anchor" title={`${activeApp.name} Active Core`}>
+                <div key={activeApp.id} className="center-tile-box">
+                  <div className="center-tile-surface">
+                    {activeApp.centerIcon}
+                    <div className="center-tile-specular" />
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. DYNAMIC RIGHT PREVIEW CARD */}
+              <Link
+                href="/contact"
+                prefetch={true}
+                className="explorer-right-anchor"
+                title={`Get started with ${activeApp.name}`}
+              >
+                <div key={activeApp.id} className="right-card-content">
+                  <div className="right-icon-box">{activeApp.icon}</div>
+                  <div className="right-text-col">
+                    <span className="right-app-name">{activeApp.name}</span>
+                    <span className="right-app-sub">{activeApp.subtitle}</span>
+                  </div>
+                  <div className="right-arrow-box">
+                    <ArrowRight size={18} strokeWidth={2.4} color="#0f766e" />
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* GAP 3: DATA LASER STREAM */}
+        <LaserGapDivider label="START INTEGRATING" />
+
+        {/* ========================================================================= */}
+        {/* SECTION 4: CALL TO ACTION BANNER                                          */}
+        {/* ========================================================================= */}
+        <section className="section-card card-cta" aria-label="Get Started with Integrations">
+          <div className="card-inner-stage stage-cta">
+            <picture>
+              <source srcSet={assetPath("/assets/integrations/reference.webp")} type="image/webp" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="reference-visual"
+                src={assetPath("/assets/integrations/reference.png")}
+                alt="GRADIX call to action"
+                draggable="false"
+                decoding="async"
+              />
+            </picture>
+            <MotionOverlay />
+
+            {/* Section 4 CTA */}
+            <div className="coded-layer sec4-typography" aria-hidden="true">
+              <h2 className="sec4-title">
+                Bring your stack into<br />
+                <span className="text-emerald-flow">the conversation.</span>
+              </h2>
+              <Link 
+                href="/contact" 
+                prefetch={true} 
+                className="coded-get-started-btn" 
+                title="Get Started with GRADIX"
+              >
+                <span>Get Started</span>
+                <ArrowRight size={17} strokeWidth={2.4} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
       </div>
 
       <section className="semantic-content" aria-label="GRADIX integrations">
