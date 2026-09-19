@@ -28,12 +28,12 @@ body {
   align-items: center;
 }
 
-/* Floating Back Pill positioned cleanly below navbar */
+/* Floating Back Pill */
 .integrations-back-pill {
   position: fixed;
   top: 76px;
   left: 24px;
-  z-index: 50;
+  z-index: 40;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -58,81 +58,14 @@ body {
   box-shadow: 0 6px 22px rgba(0, 194, 90, 0.25);
 }
 
-/* ========================================================================= */
-/* MODULAR SECTIONS CONTAINER & CARDS                                        */
-/* ========================================================================= */
-.integration-sections-container {
+.visual-stage {
   position: relative;
   width: 100%;
   max-width: 1240px;
-  margin: 18px auto 90px auto;
-  padding: 0 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.section-card {
-  position: relative;
-  width: 100%;
-  border-radius: 26px;
-  overflow: hidden;
-  background: #ffffff;
-  border: 1.5px solid rgba(200, 232, 220, 0.85);
-  box-shadow: 0 16px 44px rgba(18, 55, 62, 0.07), 0 2px 8px rgba(18, 55, 62, 0.03);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
-}
-
-.section-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 22px 55px rgba(18, 55, 62, 0.11), 0 0 20px rgba(0, 194, 90, 0.08);
-  border-color: rgba(0, 194, 90, 0.4);
-}
-
-/* Specific Card Aspect Ratios (Slices of 2048 x 3072) */
-.card-hero {
-  aspect-ratio: 2048 / 1050;
-  min-height: 290px;
-}
-
-.card-sync {
-  aspect-ratio: 2048 / 510;
-  min-height: 155px;
-}
-
-.card-explorer {
-  aspect-ratio: 2048 / 950;
-  min-height: 285px;
-}
-
-.card-cta {
-  aspect-ratio: 2048 / 562;
-  min-height: 165px;
-}
-
-/* Inner Stage Wrapper for Precise Slicing */
-.card-inner-stage {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  aspect-ratio: 2048 / 3072;
+  margin: 0 auto;
   line-height: 0;
-}
-
-.stage-hero {
-  top: 0;
-}
-
-.stage-sync {
-  top: calc(-1050 / 2048 * 100%);
-}
-
-.stage-explorer {
-  top: calc(-1560 / 2048 * 100%);
-}
-
-.stage-cta {
-  top: calc(-2510 / 2048 * 100%);
+  overflow: hidden;
+  background: #f7fcfa;
 }
 
 .reference-visual {
@@ -146,153 +79,7 @@ body {
 }
 
 /* ========================================================================= */
-/* LASER STREAM GAP DIVIDER                                                  */
-/* ========================================================================= */
-.section-laser-gap {
-  position: relative;
-  width: 100%;
-  height: 68px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  margin: 4px 0;
-  z-index: 20;
-  pointer-events: none;
-}
-
-/* Connector Nodes */
-.gap-node {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 2px solid #00c25a;
-  box-shadow: 0 0 10px #00c25a, 0 0 20px rgba(0, 229, 255, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.gap-node .node-core {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #00c25a;
-}
-
-/* Glowing Laser Conduit */
-.laser-conduit {
-  position: relative;
-  width: 3px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.conduit-ambient-glow {
-  position: absolute;
-  inset: -2px -16px;
-  background: linear-gradient(180deg, rgba(0, 194, 90, 0.5) 0%, rgba(0, 229, 255, 0.6) 50%, rgba(0, 194, 90, 0.5) 100%);
-  filter: blur(8px);
-  opacity: 0.7;
-}
-
-.conduit-line {
-  position: absolute;
-  width: 2.5px;
-  height: 100%;
-  background: linear-gradient(180deg, #00c25a 0%, #00e5ff 50%, #00c25a 100%);
-  border-radius: 999px;
-  box-shadow: 0 0 8px #00c25a, 0 0 16px rgba(0, 229, 255, 0.6);
-}
-
-/* Moving Glowing Data Packets */
-.conduit-pulse {
-  position: absolute;
-  width: 6px;
-  border-radius: 999px;
-  background: #ffffff;
-  box-shadow: 0 0 8px #ffffff, 0 0 14px #00e5ff, 0 0 22px #00c25a;
-}
-
-.pulse-fast {
-  height: 22px;
-  animation: laserPulseFlow 1.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.pulse-slow {
-  height: 14px;
-  animation: laserPulseFlow 2.4s cubic-bezier(0.4, 0, 0.2, 1) 0.8s infinite;
-}
-
-@keyframes laserPulseFlow {
-  0% {
-    top: -15%;
-    opacity: 0;
-    transform: scaleY(0.4);
-  }
-  20% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-  80% {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-  100% {
-    top: 105%;
-    opacity: 0;
-    transform: scaleY(0.4);
-  }
-}
-
-/* Ambient Floating Glass Bead */
-.gap-floating-orb {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.95), rgba(0, 229, 255, 0.4) 60%, rgba(0, 194, 90, 0.6) 100%);
-  box-shadow: 0 4px 12px rgba(0, 194, 90, 0.25), inset -2px -2px 4px rgba(0, 0, 0, 0.1);
-  right: calc(50% + 40px);
-  top: calc(50% - 9px);
-  animation: orbFloat 4s ease-in-out infinite alternate;
-}
-
-@keyframes orbFloat {
-  0% {
-    transform: translateY(-6px) scale(0.95);
-  }
-  100% {
-    transform: translateY(6px) scale(1.05);
-  }
-}
-
-/* Optional Center Gap Stream Label */
-.gap-laser-label {
-  position: absolute;
-  left: calc(50% + 22px);
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #10b981;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 3px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
-  backdrop-filter: blur(6px);
-  white-space: nowrap;
-}
-
-/* ========================================================================= */
-/* CODED TYPOGRAPHY & INTERACTIVE LAYERS                                     */
+/* CODED TYPOGRAPHY & INTERACTIVE LAYERS (CRISP VECTOR RENDERING)             */
 /* ========================================================================= */
 .coded-layer {
   position: absolute;
@@ -511,8 +298,9 @@ body {
 }
 
 .option-icon-wrap {
-  width: 22px;
-  height: 22px;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -524,123 +312,133 @@ body {
 }
 
 .option-label {
-  font-size: clamp(10px, 1.1vw, 13.5px);
-  font-weight: 700;
-  color: #1a433e;
-  letter-spacing: -0.01em;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #334155;
+  transition: color 0.2s ease;
   white-space: nowrap;
 }
 
+.explorer-option-pill.active .option-label {
+  color: #059669;
+  font-weight: 700;
+}
+
 .option-active-dot {
-  margin-left: auto;
-  width: 7px;
-  height: 7px;
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #10b981;
-  box-shadow: 0 0 8px #10b981;
+  box-shadow: 0 0 10px #10b981, 0 0 4px #ffffff;
+  border: 2px solid #ffffff;
 }
 
 /* 2. DYNAMIC CENTER 3D TILE */
 .explorer-center-anchor {
   position: absolute;
-  left: 45.3%;
-  top: 60.1%;
-  width: 11.2%;
-  height: 7.4%;
+  left: 42.97%;
+  top: 59.73%;
+  width: 12.21%;
+  height: 8.14%;
   pointer-events: auto;
-  z-index: 18;
+  z-index: 20;
 }
 
 .center-tile-box {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: centerTileFloat 3s ease-in-out infinite alternate;
+  animation: tilePopAnim 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes tilePopAnim {
+  0% { transform: scale(0.86) rotateY(-18deg); opacity: 0.5; }
+  100% { transform: scale(1) rotateY(0deg); opacity: 1; }
 }
 
 .center-tile-surface {
-  position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 24px;
+  border-radius: 26px;
+  background: radial-gradient(circle at 35% 28%, #ffffff 0%, #f7fdfa 55%, #dff7ec 100%);
+  border: 2.2px solid rgba(255, 255, 255, 0.98);
+  box-shadow: 0 14px 34px rgba(18, 55, 62, 0.12), inset 0 2px 4px #ffffff, 0 0 22px rgba(16, 185, 129, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 252, 246, 0.88) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 16px 36px rgba(18, 55, 62, 0.16), 0 0 24px rgba(16, 185, 129, 0.25), inset 0 2px 4px rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
 }
 
 .center-tile-svg {
-  max-width: 60%;
-  max-height: 60%;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+  width: 60%;
+  height: 60%;
+  display: block;
 }
 
 .center-tile-specular {
   position: absolute;
-  inset: 0;
-  border-radius: 24px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 50%);
+  top: 4px;
+  left: 10px;
+  width: 44px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0) 70%);
+  transform: rotate(-25deg);
+  filter: blur(1.5px);
   pointer-events: none;
-}
-
-@keyframes centerTileFloat {
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  100% {
-    transform: translateY(-5px) rotate(0.8deg);
-  }
 }
 
 /* 3. DYNAMIC RIGHT PREVIEW CARD */
 .explorer-right-anchor {
   position: absolute;
-  left: 71.7%;
-  top: 54.3%;
-  width: 23.9%;
-  height: 19.0%;
+  left: 75.44%;
+  top: 55.83%;
+  width: 18.80%;
+  height: 4.72%;
   pointer-events: auto;
-  text-decoration: none;
   z-index: 20;
+  text-decoration: none;
 }
 
 .right-card-content {
-  position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 253, 249, 0.92) 100%);
-  border: 1.8px solid rgba(16, 185, 129, 0.35);
-  box-shadow: 0 14px 34px rgba(18, 55, 62, 0.14), 0 0 20px rgba(16, 185, 129, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1.2px solid rgba(214, 232, 224, 0.95);
+  border-left: 3.5px solid #10b981;
+  box-shadow: 0 8px 24px rgba(18, 55, 62, 0.08);
   display: flex;
   align-items: center;
-  padding: 0 6% 0 6%;
-  gap: 5%;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  justify-content: space-between;
+  padding: 6px 14px 6px 12px;
+  gap: 10px;
+  transition: all 0.25s ease;
+  animation: rightCardFade 0.3s ease-out;
 }
 
-.right-card-content:hover {
+@keyframes rightCardFade {
+  0% { transform: translateY(-3px); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.explorer-right-anchor:hover .right-card-content {
   border-color: #10b981;
-  box-shadow: 0 18px 42px rgba(18, 55, 62, 0.2), 0 0 28px rgba(16, 185, 129, 0.35);
-  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(0, 194, 90, 0.22);
+  transform: translateX(4px);
 }
 
 .right-icon-box {
-  width: 22%;
-  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
 .right-icon-box svg {
@@ -649,53 +447,98 @@ body {
 }
 
 .right-text-col {
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .right-app-name {
-  font-size: clamp(12px, 1.4vw, 17px);
+  font-size: 13px;
   font-weight: 800;
-  color: #0f2723;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #0f172a;
+  line-height: 1.2;
 }
 
 .right-app-sub {
-  font-size: clamp(9px, 0.9vw, 12px);
+  font-size: 11px;
   font-weight: 500;
-  color: #4a6b63;
-  margin-top: 2px;
+  color: #64748b;
+  line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .right-arrow-box {
-  width: 12%;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
+  justify-content: center;
   transition: transform 0.2s ease;
 }
 
-.right-card-content:hover .right-arrow-box {
-  transform: translateX(4px);
+.explorer-right-anchor:hover .right-arrow-box {
+  transform: translateX(3px);
+}
+
+/* Hotspot for the "Get Started →" button */
+.get-started-hotspot {
+  position: absolute;
+  left: 5.4%;
+  top: 89.2%;
+  width: 16.5%;
+  height: 3.4%;
+  border-radius: 999px;
+  cursor: pointer;
+  z-index: 10;
+  background: transparent;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.get-started-hotspot:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 194, 90, 0.4);
+  transform: scale(1.02);
 }
 
 .semantic-content {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
-  margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip: rect(0 0 0 0);
   white-space: nowrap;
-  border: 0;
+}
+
+@media (max-width: 700px) {
+  .reference-visual {
+    width: 100%;
+    min-width: 0;
+  }
+  .integrations-back-pill {
+    top: 14px;
+    left: 14px;
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+  .option-label {
+    font-size: 10px;
+  }
+  .right-app-name {
+    font-size: 11px;
+  }
+  .right-app-sub {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-overlay {
+    transition: none;
+  }
+  .center-tile-box,
+  .right-card-content {
+    animation: none;
+  }
 }
