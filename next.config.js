@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   compress: true,
   poweredByHeader: false,
+  output: 'export',
   images: {
     domains: ['images.unsplash.com', 'cdn.simpleicons.org'],
     unoptimized: true,
