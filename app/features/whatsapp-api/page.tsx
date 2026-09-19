@@ -434,17 +434,6 @@ export default function WhatsAppAPIPage() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="api-footer">
-          <b>G GRADIX</b>
-          <span>© {new Date().getFullYear()} Gradix Technologies. All rights reserved.</span>
-          <nav>
-            <Link href="/privacy" prefetch={true}>Privacy Policy</Link>
-            <Link href="/terms" prefetch={true}>Terms of Service</Link>
-            <Link href="/contact" prefetch={true}>Contact</Link>
-          </nav>
-        </footer>
-
         {/* Reference Button */}
         <button className="api-reference-btn" onClick={() => setShowRef(true)}>
           REFERENCE

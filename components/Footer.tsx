@@ -7,24 +7,6 @@ import GradixLogo from "@/components/GradixLogo";
 import { ShieldCheck, MessageSquare } from "lucide-react";
 
 export default function Footer() {
-  const pathname = usePathname();
-
-  if (
-    pathname === "/features/whatsapp-crm" || 
-    pathname?.startsWith("/features/integration") ||
-    pathname?.startsWith("/features/customer-support") ||
-    pathname?.startsWith("/features/support") ||
-    pathname?.startsWith("/features/whatsapp-commerce") ||
-    pathname?.startsWith("/features/commerce") ||
-    pathname?.startsWith("/features/ai-customer-inbox") ||
-    pathname?.startsWith("/features/inbox") ||
-    pathname?.startsWith("/features/whatsapp-api") ||
-    pathname?.startsWith("/features/api") ||
-    pathname?.startsWith("/whatsapp-api")
-  ) {
-    return null;
-  }
-
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
