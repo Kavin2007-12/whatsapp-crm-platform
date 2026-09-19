@@ -31,9 +31,9 @@ body {
 /* Floating Back Pill */
 .integrations-back-pill {
   position: fixed;
-  bottom: 24px;
+  top: 76px;
   left: 24px;
-  z-index: 100;
+  z-index: 40;
   display: inline-flex;
   align-items: center;
   gap: 7px;
