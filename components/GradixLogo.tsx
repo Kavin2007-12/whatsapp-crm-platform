@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { assetPath } from "@/lib/assets";
 
 interface GradixLogoProps {
   size?: "sm" | "md" | "lg" | "xl";
@@ -24,7 +25,8 @@ export default function GradixLogo({
   };
 
   const targetHeight = pixelHeightMap[size] || 40;
-  const logoSrc = inverted ? "/gradix-logo-white.png" : "/gradix-logo-exact.png";
+  const rawLogo = inverted ? "/gradix-logo-white.png" : "/gradix-logo-exact.png";
+  const logoSrc = assetPath(rawLogo);
 
   const content = (
     <div className={`inline-flex items-center select-none ${className}`} style={{ height: `${targetHeight}px`, maxHeight: `${targetHeight}px` }}>

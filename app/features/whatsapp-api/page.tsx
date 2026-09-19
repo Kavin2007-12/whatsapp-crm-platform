@@ -16,6 +16,7 @@ import {
   CheckCircle2,
   ArrowLeft,
 } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 import "./whatsapp-api.css";
 
 const industries = [
@@ -69,7 +70,7 @@ export default function WhatsAppAPIPage() {
   if (showRef) {
     return (
       <div className="api-reference-mode">
-        <img src="/assets/whatsapp-api/reference.png" alt="WhatsApp API Reference Mockup" />
+        <img src={assetPath("/assets/whatsapp-api/reference.png")} alt="WhatsApp API Reference Mockup" />
         <button onClick={() => setShowRef(false)}>CLOSE PREVIEW</button>
       </div>
     );

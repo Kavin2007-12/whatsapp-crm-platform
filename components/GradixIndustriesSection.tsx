@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { assetPath } from "@/lib/assets";
 
 export default function GradixIndustriesSection() {
   return (
@@ -20,9 +20,15 @@ export default function GradixIndustriesSection() {
         </div>
 
         <div className="headline">
-          <h2>Whatever you sell,<br />your customers are already<br /><span>on WhatsApp.</span></h2>
-          <p>Gradix brings your conversations, leads, team and payments<br className="desktop hidden md:inline" />
-             together in one powerful WhatsApp CRM.</p>
+          <h2>
+            Whatever you sell,<br />
+            your customers are already<br />
+            <span>on WhatsApp.</span>
+          </h2>
+          <p>
+            Gradix brings your conversations, leads, team and payments<br className="desktop hidden md:inline" />
+            together in one powerful WhatsApp CRM.
+          </p>
         </div>
 
         <div className="global-art" aria-hidden="true">
@@ -40,10 +46,10 @@ export default function GradixIndustriesSection() {
         </div>
 
         <div className="person">
-          <img src="/images/industries/woman.png" alt="Gradix Team Lead" />
+          <img src={assetPath("/images/industries/woman.png")} alt="Gradix Team Lead" />
           <div className="chat">
             <div className="wa-mini">◔</div>
-            <div className="bubble">Hi! I'd like to know more<br />about your services.</div>
+            <div className="bubble">Hi! I&apos;d like to know more<br />about your services.</div>
             <div className="bubble reply">Sure! How can I help you<br />today? 😊</div>
           </div>
           <div className="metric m1">↗ <b>More Leads</b></div>
@@ -55,7 +61,7 @@ export default function GradixIndustriesSection() {
       <div className="industry-row">
         {/* Real Estate */}
         <article className="industry real">
-          <img src="/images/industries/real-estate.jpg" alt="Real Estate" />
+          <img src={assetPath("/images/industries/real-estate.jpg")} alt="Real Estate" />
           <div className="card-body">
             <div className="icon">⌂</div>
             <div>
@@ -72,7 +78,7 @@ export default function GradixIndustriesSection() {
 
         {/* Education & EdTech */}
         <article className="industry edu">
-          <img src="/images/industries/education.jpg" alt="Education & EdTech" />
+          <img src={assetPath("/images/industries/education.jpg")} alt="Education & EdTech" />
           <div className="card-body">
             <div className="icon">◆</div>
             <div>
@@ -89,7 +95,7 @@ export default function GradixIndustriesSection() {
 
         {/* Healthcare & Clinics */}
         <article className="industry health">
-          <img src="/images/industries/healthcare.jpg" alt="Healthcare & Clinics" />
+          <img src={assetPath("/images/industries/healthcare.jpg")} alt="Healthcare & Clinics" />
           <div className="card-body">
             <div className="icon">✚</div>
             <div>
@@ -106,7 +112,7 @@ export default function GradixIndustriesSection() {
 
         {/* E-commerce & D2C */}
         <article className="industry shop">
-          <img src="/images/industries/ecommerce.jpg" alt="E-commerce & D2C" />
+          <img src={assetPath("/images/industries/ecommerce.jpg")} alt="E-commerce & D2C" />
           <div className="card-body">
             <div className="icon">▣</div>
             <div>
@@ -123,7 +129,7 @@ export default function GradixIndustriesSection() {
 
         {/* Travel & Tourism */}
         <article className="industry travel">
-          <img src="/images/industries/travel.jpg" alt="Travel & Tourism" />
+          <img src={assetPath("/images/industries/travel.jpg")} alt="Travel & Tourism" />
           <div className="card-body">
             <div className="icon">✈</div>
             <div>
@@ -142,7 +148,7 @@ export default function GradixIndustriesSection() {
       <div className="cta-bar">
         <span className="arrow">↗</span>
         <b>Ready to turn your WhatsApp into a growth engine?</b>
-        <Link href="/contact">
+        <Link href="/contact" prefetch={true}>
           Start Free Trial <span>→</span>
         </Link>
       </div>

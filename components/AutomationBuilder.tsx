@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { assetPath } from "@/lib/assets";
 import { 
   Star, 
   Quote, 
@@ -208,7 +209,7 @@ export default function AutomationBuilder() {
                 {/* Verified Brand Logo Card */}
                 <div className="bg-slate-50 px-4 py-2 rounded-xl border border-slate-200/80 flex items-center justify-center shrink-0">
                   <Image
-                    src={current.brandLogo}
+                    src={assetPath(current.brandLogo)}
                     alt={current.company}
                     width={110}
                     height={38}

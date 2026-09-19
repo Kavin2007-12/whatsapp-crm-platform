@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 import "./integration.css";
 
 // 8 Interactive Integrations with 3D Icons, details, and metadata
@@ -311,11 +312,11 @@ export default function IntegrationsPage() {
       <div className="visual-stage">
         {/* Base Visual Artwork */}
         <picture>
-          <source srcSet="/assets/integrations/reference.webp" type="image/webp" />
+          <source srcSet={assetPath("/assets/integrations/reference.webp")} type="image/webp" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="reference-visual"
-            src="/assets/integrations/reference.png"
+            src={assetPath("/assets/integrations/reference.png")}
             alt="GRADIX integrations visual"
             draggable="false"
             decoding="async"

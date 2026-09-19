@@ -621,7 +621,9 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: url("/assets/gradix-dark-reference.webp") center/100% 100% no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   image-rendering: auto;
 }
 

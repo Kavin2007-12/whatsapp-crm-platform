@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { assetPath } from "@/lib/assets";
 
 interface ClientBrand {
   name: string;
@@ -85,7 +86,7 @@ export default function OneInboxSection() {
               >
                 <div className="relative w-full h-full flex items-center justify-center filter grayscale contrast-[1.05] opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
                   <Image
-                    src={brand.logo}
+                    src={assetPath(brand.logo)}
                     alt={brand.name}
                     width={brand.width || 130}
                     height={brand.height || 48}

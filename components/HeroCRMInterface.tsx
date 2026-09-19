@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { assetPath } from "@/lib/assets";
 import { 
   MessageSquare, 
   CheckCheck, 
@@ -146,7 +147,7 @@ export default function HeroCRMInterface() {
       {/* Uploaded High-Res Brand World Map Background */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden">
         <Image 
-          src="/images/hero-bg.png"
+          src={assetPath("/images/hero-bg.png")}
           alt="Gradix Global WhatsApp Network"
           fill
           priority

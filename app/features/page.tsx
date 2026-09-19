@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowRight, X, Sparkles, CheckCircle2 } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 interface FeatureCardHotspot {
   id: string;
@@ -246,7 +247,13 @@ export default function FeaturesPage() {
       {/* ========================================================================= */}
       <main className="features-stage" id="scene" ref={sceneRef}>
         {/* Exact Artwork Base Layer (2560x1280 lossless WebP with single pristine globe) */}
-        <div className="base-art" aria-hidden="true"></div>
+        <div
+          className="base-art"
+          aria-hidden="true"
+          style={{
+            backgroundImage: `url(${assetPath("/assets/gradix-dark-reference.webp")})`,
+          }}
+        ></div>
 
         {/* ========================================================================= */}
         {/* CRISP VECTOR HEADER OVERLAY (100% RAZOR SHARP TYPOGRAPHY)                */}
@@ -277,7 +284,7 @@ export default function FeaturesPage() {
             <>
               {/* 3D Circular Feature Icon Badge */}
               <img
-                src={hotspot.icon}
+                src={assetPath(hotspot.icon)}
                 alt={hotspot.title}
                 className="feature-pill-icon pointer-events-none"
               />

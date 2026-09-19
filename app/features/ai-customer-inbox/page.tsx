@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 import "./inbox.css";
 
 // 6 AI Customer Inbox Intelligence Nodes positions (%) matching /assets/ai-customer-inbox/reference.png
@@ -119,12 +120,12 @@ export default function AiCustomerInboxPage() {
       {/* Main Visual Stage */}
       <div className="inbox-stage-wrapper">
         <picture>
-          <source srcSet="/assets/ai-customer-inbox/reference-2x.webp" type="image/webp" />
-          <source srcSet="/assets/ai-customer-inbox/reference.webp" type="image/webp" />
+          <source srcSet={assetPath("/assets/ai-customer-inbox/reference-2x.webp")} type="image/webp" />
+          <source srcSet={assetPath("/assets/ai-customer-inbox/reference.webp")} type="image/webp" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="inbox-stage-image"
-            src="/assets/ai-customer-inbox/reference.png"
+            src={assetPath("/assets/ai-customer-inbox/reference.png")}
             alt="GRADIX AI Customer Inbox Visual"
             draggable="false"
             decoding="async"

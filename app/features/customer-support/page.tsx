@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 import "./customer-support.css";
 
 // 6 Support Intelligence Nodes positions (%) matching reference
@@ -57,12 +58,12 @@ export default function CustomerSupportPage() {
       {/* Main Visual Stage */}
       <div className="cs-visual-stage">
         <picture>
-          <source srcSet="/customer-support-reference-2x.webp" type="image/webp" />
-          <source srcSet="/customer-support-reference.webp" type="image/webp" />
+          <source srcSet={assetPath("/customer-support-reference-2x.webp")} type="image/webp" />
+          <source srcSet={assetPath("/customer-support-reference.webp")} type="image/webp" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="cs-reference-image"
-            src="/customer-support-reference.png"
+            src={assetPath("/customer-support-reference.png")}
             alt="GRADIX customer support visual"
             draggable="false"
             decoding="async"

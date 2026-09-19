@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 import "./commerce.css";
 import Commerce3D from "./Commerce3D";
 
@@ -60,11 +61,11 @@ export default function WhatsAppCommercePage() {
 
       <section className="pixel-stage">
         <picture>
-          <source srcSet="/assets/commerce/reference-2x.webp" type="image/webp" />
-          <source srcSet="/assets/commerce/reference.webp" type="image/webp" />
+          <source srcSet={assetPath("/assets/commerce/reference-2x.webp")} type="image/webp" />
+          <source srcSet={assetPath("/assets/commerce/reference.webp")} type="image/webp" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/commerce/reference.png"
+            src={assetPath("/assets/commerce/reference.png")}
             className="reference"
             alt="GRADIX WhatsApp Commerce cinematic design"
             draggable="false"
